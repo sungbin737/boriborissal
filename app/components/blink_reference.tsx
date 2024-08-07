@@ -6,7 +6,6 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
 interface BlinkProps {
-  appearDelay: number;
   increaseScore: () => void;
   decreaseScore: () => void;
 }
@@ -15,7 +14,7 @@ export default function Blink({ increaseScore, decreaseScore }: BlinkProps) {
   const [visible, setVisible] = useState(false);
   const [boriVisible, setBoriVisible] = useState(false);
   const [ssalVisible, setSsalVisible] = useState(false);
-  const appearDelay = 350;
+  const appearDelay = 250;
   useEffect(() => {
     if (visible) {
       if (Math.random() < 0.75) {
