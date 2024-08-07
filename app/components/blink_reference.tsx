@@ -5,12 +5,17 @@ import { randomFill } from "crypto";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
-export default function Blink() {
+interface BlinkProps {
+  appearDelay: number;
+  increaseScore: () => void;
+  decreaseScore: () => void;
+}
+export default function Blink({ increaseScore, decreaseScore }: BlinkProps) {
   const [hideDelay, setHideDelay] = useState(500);
   const [visible, setVisible] = useState(false);
   const [boriVisible, setBoriVisible] = useState(false);
   const [ssalVisible, setSsalVisible] = useState(false);
-  const appearDelay = 220;
+  const appearDelay = 350;
   useEffect(() => {
     if (visible) {
       if (Math.random() < 0.75) {
@@ -37,13 +42,14 @@ export default function Blink() {
     return () => clearInterval(interval); // 컴포넌트 언마운트 시 인터벌을 정리합니다.
   }, [visible, hideDelay, appearDelay]);
   return (
-    <div className="relative">
+    <div className="relative h-[500px]">
       <button
         className={cn(
           "absolute top-0 left-0",
           boriVisible ? "block" : "hidden"
         )}
         onMouseDown={() => {
+          decreaseScore();
           window.alert("보리ㅜㅜ");
           console.log("fail");
         }}
@@ -56,6 +62,7 @@ export default function Blink() {
           ssalVisible ? "block" : "hidden"
         )}
         onMouseDown={() => {
+          increaseScore();
           window.alert("쌀!");
           console.log("success");
         }}
