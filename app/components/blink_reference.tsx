@@ -14,7 +14,7 @@ export default function Blink({ increaseScore, decreaseScore }: BlinkProps) {
   const [visible, setVisible] = useState(false);
   const [boriVisible, setBoriVisible] = useState(false);
   const [ssalVisible, setSsalVisible] = useState(false);
-  const appearDelay = 250;
+  const appearDelay = 270;
   useEffect(() => {
     if (visible) {
       if (Math.random() < 0.75) {
